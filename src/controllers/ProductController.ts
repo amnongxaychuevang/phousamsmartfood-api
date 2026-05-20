@@ -4,9 +4,10 @@ import { Product } from "../entities/Product";
 
 export class ProductController {
     static async getAll(req: Request, res: Response) {
-        const products = await AppDataSource.getRepository(Product).find({
-            where: { isActive: true }
-        });
+        const includeInactive = req.query.includeInactive === "true";
+        const products = await AppDataSource.getRepository(Product).find(
+            includeInactive ? {} : { where: { isActive: true } }
+        );
         res.json(products);
     }
 

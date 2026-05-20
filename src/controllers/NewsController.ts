@@ -4,8 +4,9 @@ import { News } from "../entities/News";
 
 export class NewsController {
     static async getAll(req: Request, res: Response) {
+        const includeInactive = req.query.includeInactive === "true";
         const news = await AppDataSource.getRepository(News).find({
-            where: { isActive: true },
+            ...(includeInactive ? {} : { where: { isActive: true } }),
             order: { date: "DESC" }
         });
         res.json(news);

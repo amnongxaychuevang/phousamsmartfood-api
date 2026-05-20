@@ -23,6 +23,15 @@ export class Product {
     @Column("text")
     description_vi!: string;
 
+    @Column("text", { nullable: true })
+    content_lo?: string;
+
+    @Column("text", { nullable: true })
+    content_en?: string;
+
+    @Column("text", { nullable: true })
+    content_vi?: string;
+
     @Column()
     category!: string;
 
