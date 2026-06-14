@@ -30,4 +30,9 @@ router.delete("/team/:id", TeamController.delete);
 router.post("/contact", ContactController.submit);
 router.get("/contacts", ContactController.getAll);
 
+import { CloudinaryController } from "../controllers/CloudinaryController";
+
+// Cloudinary
+router.post("/cloudinary/delete", CloudinaryController.deleteImage);
+
 export default router;

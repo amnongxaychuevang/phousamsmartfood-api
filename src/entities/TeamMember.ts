@@ -11,18 +11,6 @@ export class TeamMember {
     @Column({ nullable: true })
     role?: string;
 
-    @Column({ nullable: true })
-    role_lo?: string;
-
-    @Column({ nullable: true })
-    role_en?: string;
-
-    @Column({ nullable: true })
-    role_vi?: string;
-
-    @Column("text", { nullable: true })
-    bio?: string;
-
     @Column("text", { nullable: true })
     bio_lo?: string;
 
