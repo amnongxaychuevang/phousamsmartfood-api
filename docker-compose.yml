@@ -1,0 +1,34 @@
+services:
+  api:
+    build: .
+    container_name: phousam-api
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    environment:
+      # Override DB_HOST because inside docker, the API needs to connect to the 'db' container, not 127.0.0.1
+      DB_HOST: db
+    depends_on:
+      - db
+
+  # Optional: Database container if you want to host DB together with the API
+  db:
+    image: mysql:8.0
+    container_name: phousam-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASS:-rootpassword}
+      MYSQL_DATABASE: ${DB_NAME:-phousam_db}
+      # Only use MYSQL_USER if DB_USER is not 'root'
+      # MYSQL_USER: ${DB_USER}
+      # MYSQL_PASSWORD: ${DB_PASS}
+    ports:
+      # Changed from 3306:3306 to 3307:3306 to prevent conflict with local MySQL (e.g., XAMPP)
+      - "3307:3306"
+    volumes:
+      - phousam_db_data:/var/lib/mysql
+
+volumes:
+  phousam_db_data:
