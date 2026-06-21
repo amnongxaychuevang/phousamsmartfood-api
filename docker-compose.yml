@@ -15,7 +15,7 @@ services:
 
   # Optional: Database container if you want to host DB together with the API
   db:
-    image: mysql:8.0
+    image: mysql:5.7
     container_name: phousam-db
     restart: unless-stopped
     environment:
