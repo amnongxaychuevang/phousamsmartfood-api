@@ -6,10 +6,22 @@ export class TeamMember {
     id!: number;
 
     @Column()
-    name!: string;
+    name_lo!: string;
+
+    @Column()
+    name_en!: string;
+
+    @Column()
+    name_vi!: string;
 
     @Column({ nullable: true })
-    role?: string;
+    role_lo?: string;
+
+    @Column({ nullable: true })
+    role_en?: string;
+
+    @Column({ nullable: true })
+    role_vi?: string;
 
     @Column("text", { nullable: true })
     bio_lo?: string;

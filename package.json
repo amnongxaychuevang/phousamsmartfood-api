@@ -16,9 +16,10 @@
   "description": "",
   "dependencies": {
     "cloudinary": "^2.10.0",
+    "cors": "^2.8.6",
+    "cropperjs": "^1.6.2",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "cors": "^2.8.6",
     "mysql2": "^3.22.3",
     "reflect-metadata": "^0.2.2",
     "sequelize": "^6.37.8",

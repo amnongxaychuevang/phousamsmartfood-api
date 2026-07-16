@@ -4,7 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { AppDataSource } from "./config/data-source";
 
-import routes from "./routes";
+import routes from "./presentation/routes";
 
 dotenv.config();
 

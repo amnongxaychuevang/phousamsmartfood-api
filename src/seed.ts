@@ -1,8 +1,9 @@
 import { AppDataSource } from "./config/data-source";
-import { Product } from "./entities/Product";
-import { News } from "./entities/News";
-import { TeamMember } from "./entities/TeamMember";
-import { Contact } from "./entities/Contact";
+import { Product } from "./domain/entities/Product";
+import { News } from "./domain/entities/News";
+import { TeamMember } from "./domain/entities/TeamMember";
+import { Setting } from "./domain/entities/Setting";
+import { Contact } from "./domain/entities/Contact";
 
 async function seed() {
     try {
@@ -125,27 +126,51 @@ async function seed() {
         console.log("Seeding Team members...");
         const teamData = [
             {
-                name: "Mr. Vanhthong THORKHOUALOUA",
-                role: "Founder & Chief Executive Officer (CEO)",
-                bio: "Vanhthong leads the company with a strong vision for sustainable development and smart food innovation. With a background in forestry landscape restoration and value chains development, he brings both technical knowledge and leadership experience.",
+                name_lo: "ທ່ານ ວັນທອງ ທໍ່ຄົວລົວ",
+                name_en: "Mr. Vanhthong THORKHOUALOUA",
+                name_vi: "Ông Vanhthong THORKHOUALOUA",
+                role_lo: "ຜູ້ກໍ່ຕັ້ງ ແລະ ຜູ້ອຳນວຍການໃຫຍ່ (CEO)",
+                role_en: "Founder & Chief Executive Officer (CEO)",
+                role_vi: "Nhà sáng lập & Giám đốc điều hành (CEO)",
+                bio_lo: "ວັນທອງ ນຳພາລິເລີ່ມທຸລະກິດດ້ວຍວິໄສທັດອັນກວ້າງໄກ ເພື່ອການພັດທະນາແບບຍືນຍົງ ແລະ ຈັດການອາຫານແບບສະຫຼາດ. ດ້ວຍພື້ນຖານຄວາມຮູ້ດ້ານການຟື້ນຟູພູມີທັດປ່າໄມ້ ແລະ ການພັດທະນາຕ່ອງໂສ້ມູນຄ່າເພີ່ມ, ທ່ານໄດ້ນຳເອົາທັງຄວາມຮູ້ທາງດ້ານເຕັກນິກ ແລະ ປະສົບການການນຳພາມາບໍລິຫານ.",
+                bio_en: "Vanhthong leads the company with a strong vision for sustainable development and smart food innovation. With a background in forestry landscape restoration and value chains development, he brings both technical knowledge and leadership experience.",
+                bio_vi: "Vanhthong dẫn dắt công ty với tầm nhìn mạnh mẽ về phát triển bền vững và đổi mới thực phẩm thông minh. Với nền tảng về phục hồi cảnh quan rừng và phát triển chuỗi giá trị, ông mang lại cả kiến thức kỹ thuật và kinh nghiệm lãnh đạo.",
                 order: 1
             },
             {
-                name: "Ms. Axong MAICHUEDOUAVANG",
-                role: "Deputy Director, Chief Financial officer (CFO)",
-                bio: "Axong oversees business operations and product development. With deep local roots and strong management skills, she ensures that every product from Phou Sam meets the highest standards of quality and authenticity. She is passionate about supporting women entrepreneurs and promoting local ingredients.",
+                name_lo: "ທ່ານ ນາງ ອາຊົ້ງ ໄມ້ຈື້ດົວວ່າງ",
+                name_en: "Ms. Axong MAICHUEDOUAVANG",
+                name_vi: "Bà Axong MAICHUEDOUAVANG",
+                role_lo: "ຮອງຜູ້ອຳນວຍການ ແລະ ຫົວໜ້າຝ່າຍການເງິນ (CFO)",
+                role_en: "Deputy Director, Chief Financial Officer (CFO)",
+                role_vi: "Phó giám đốc, Giám đốc tài chính (CFO)",
+                bio_lo: "ອາຊົ້ງ ຮັບຜິດຊອບເບິ່ງແຍງການດຳເນີນທຸລະກິດ ແລະ ການພັດທະນາຜະລິດຕະພັນ. ດ້ວຍຄວາມຜູกພັນກັບທ້ອງຖິ່ນ ແລະ ທັກສະການຄຸ້ມຄອງທີ່ເຂັ້ມແຂງ, ທ່ານນາງຮັບປະກັນວ່າທຸກຜະລິດຕະພັນຈາກ ພູຊໍາ ຕອບສະໜອງມາດຕະຖານຄຸນນະພາບ ແລະ ຄວາມບໍລິສຸດສູງສຸດ.",
+                bio_en: "Axong oversees business operations and product development. With deep local roots and strong management skills, she ensures that every product from Phou Sam meets the highest standards of quality and authenticity.",
+                bio_vi: "Axong giám sát các hoạt động kinh doanh và phát triển sản phẩm. Với nguồn gốc địa phương sâu sắc và kỹ năng quản lý mạnh mẽ, bà đảm bảo rằng mọi sản phẩm từ Phou Sam đều đáp ứng các tiêu chuẩn cao nhất về chất lượng và tính xác thực.",
                 order: 2
             },
             {
-                name: "Mr. Johnny VISISOMBATH",
-                role: "Marketing & Supply Chain Officer",
-                bio: "Johnny manages coordination with farmers and processing teams. He ensures product consistency, quality control, and smooth operations from sourcing to packaging. His attention to detail and strong relationships with producers make him a key part of the company’s growth.",
+                name_lo: "ທ່ານ ຈອນນີ ວິສີສົມບັດ",
+                name_en: "Mr. Johnny VISISOMBATH",
+                name_vi: "Ông Johnny VISISOMBATH",
+                role_lo: "ພະນັກງານຝ່າຍການຕະຫຼາດ ແລະ ຕ່ອງໂສ້ອຸປະທານ",
+                role_en: "Marketing & Supply Chain Officer",
+                role_vi: "Nhân viên Tiếp thị & Chuỗi cung ứng",
+                bio_lo: "ຈອນນີ ຄຸ້ມຄອງການປະສານງານກັບຊາວກະສິກອນ ແລະ ທີມງານປຸງແຕ່ງ. ທ່ານຮັບປະກັນຄວາມສອດຄ່ອງຂອງຜະລິດຕະພັນ, ການຄວບຄຸມຄຸນນະພາບ ແລະ ການດຳເນີນງານທີ່ສະດວກສະບາຍຈາກແຫຼ່ງຜະລິດໄປຫາການບັນຈຸພັນ.",
+                bio_en: "Johnny manages coordination with farmers and processing teams. He ensures product consistency, quality control, and smooth operations from sourcing to packaging.",
+                bio_vi: "Johnny quản lý việc điều phối với nông dân và các đội chế biến. Ông đảm bảo tính nhất quán của sản phẩm, kiểm soát chất lượng và hoạt động trôi chảy từ khâu thu mua đến đóng gói.",
                 order: 3
             },
             {
-                name: "Mr. Amnong XAYCHUEVANG",
-                role: "IT supports & Communication Officer",
-                bio: "Amnong leads the company’s communication strategy, storytelling, and branding activities. He works to connect Phou Sam Smart Food with customers, partners, and communities promoting the message of sustainability and smart innovation.",
+                name_lo: "ທ່ານ ອຳນົງ ໄຊຈື້ວ່າງ",
+                name_en: "Mr. Amnong XAYCHUEVANG",
+                name_vi: "Ông Amnong XAYCHUEVANG",
+                role_lo: "ພະນັກງານໄອທີ ແລະ ຝ່າຍສື່ສານອົງກອນ",
+                role_en: "IT Support & Communication Officer",
+                role_vi: "Nhân viên hỗ trợ CNTT & Truyền thông",
+                bio_lo: "ອຳນົງ ນຳພາການສ້າງຍຸດທະສາດການສື່ສານຂອງບໍລິສັດ, ການເລົ່າເລື່ອງ ແລະ ກິດຈະກຳການສ້າງແບຣນ. ທ່ານເຮັດວຽກເພື່ອເຊື່ອມຕໍ່ ພູຊໍາ ສະມາດ ຟູດ ກັບລູກຄ້າ, ຄູ່ຮ່ວມງານ ແລະ ຊຸມຊົນ.",
+                bio_en: "Amnong leads the company’s communication strategy, storytelling, and branding activities. He works to connect Phou Sam Smart Food with customers, partners, and communities promoting the message of sustainability.",
+                bio_vi: "Amnong dẫn dắt chiến lược truyền thông, kể chuyện và các hoạt động xây dựng thương hiệu của công ty. Ông làm việc để kết nối Phou Sam Smart Food với khách hàng, đối tác và cộng đồng.",
                 order: 4
             }
         ];
