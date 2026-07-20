@@ -4,6 +4,8 @@ import { News } from "./domain/entities/News";
 import { TeamMember } from "./domain/entities/TeamMember";
 import { Setting } from "./domain/entities/Setting";
 import { Contact } from "./domain/entities/Contact";
+import { User } from "./domain/entities/User";
+import bcrypt from "bcryptjs";
 
 async function seed() {
     try {
@@ -14,6 +16,7 @@ async function seed() {
         const newsRepo = AppDataSource.getRepository(News);
         const teamRepo = AppDataSource.getRepository(TeamMember);
         const contactRepo = AppDataSource.getRepository(Contact);
+        const userRepo = AppDataSource.getRepository(User);
 
         // 0. Clear existing data to avoid duplicates
         console.log("Cleaning up old data...");
@@ -21,6 +24,7 @@ async function seed() {
         await newsRepo.clear();
         await teamRepo.clear();
         await contactRepo.clear();
+        await userRepo.clear();
         console.log("Old data cleared!");
 
         // 1. Seed Products
@@ -77,6 +81,16 @@ async function seed() {
             await productRepo.save(product);
         }
         console.log("Products seeded successfully!");
+
+        // Seeding Admin User
+        console.log("Seeding Admin User...");
+        const hashedPassword = await bcrypt.hash("admin1234", 10);
+        const adminUser = userRepo.create({
+            username: "admin",
+            password: hashedPassword
+        });
+        await userRepo.save(adminUser);
+        console.log("Admin User seeded successfully!");
 
         // 2. Seed News
         console.log("Seeding News...");
