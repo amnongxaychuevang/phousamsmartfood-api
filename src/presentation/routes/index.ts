@@ -40,6 +40,7 @@ router.delete("/team/:id", authMiddleware, TeamController.delete);
 // Contact
 router.post("/contact", ContactController.submit);
 router.get("/contacts", authMiddleware, ContactController.getAll);
+router.delete("/contacts/:id", authMiddleware, ContactController.delete);
 
 // Cloudinary
 router.post("/cloudinary/delete", authMiddleware, CloudinaryController.deleteImage);

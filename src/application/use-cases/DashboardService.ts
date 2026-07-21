@@ -35,10 +35,9 @@ export class DashboardService {
                 take: 3
             }),
 
-            // Recent news (we can sort by date, but since views are requested we can fetch top viewed news if wanted, or just keep recent news)
-            // Wait, the user asked for "recent news", but earlier they said "ຍອດເຂົ້າຊົມສູງສຸດ and ຂ່າວສານຫຼ້າສຸດ", so top products by views, and news by date.
+            // Top viewed news (User requested sorting by views)
             newsRepo.find({
-                order: { date: "DESC" },
+                order: { views: "DESC" },
                 take: 3
             }),
             
