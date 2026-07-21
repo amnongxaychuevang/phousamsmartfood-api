@@ -21,7 +21,8 @@ export class DashboardService {
             categoryCount,
             unreadInquiryCount,
             topProducts,
-            recentNews
+            recentNews,
+            recentMessages
         ] = await Promise.all([
             productRepo.count(),
             newsRepo.count(),
@@ -39,6 +40,12 @@ export class DashboardService {
             newsRepo.find({
                 order: { date: "DESC" },
                 take: 3
+            }),
+            
+            // Recent messages
+            contactRepo.find({
+                order: { createdAt: "DESC" },
+                take: 5
             })
         ]);
 
@@ -85,6 +92,7 @@ export class DashboardService {
             unreadInquiryCount,
             topProducts,
             recentNews,
+            recentMessages,
             trafficData
         };
     }
