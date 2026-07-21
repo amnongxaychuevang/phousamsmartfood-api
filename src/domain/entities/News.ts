@@ -31,4 +31,7 @@ export class News {
 
     @Column({ default: true })
     isActive!: boolean;
+
+    @Column({ default: 0 })
+    views!: number;
 }

@@ -7,6 +7,8 @@ import { SettingController } from "../controllers/SettingController";
 import { CloudinaryController } from "../controllers/CloudinaryController";
 import { CategoryController } from "../controllers/CategoryController";
 import { AuthController } from "../controllers/AuthController";
+import { DashboardController } from "../controllers/DashboardController";
+import { TrackingController } from "../controllers/TrackingController";
 import { authMiddleware } from "../middlewares/auth";
 
 const router = Router();
@@ -52,5 +54,13 @@ router.get("/categories/:id", CategoryController.getOne);
 router.post("/categories", authMiddleware, CategoryController.create);
 router.put("/categories/:id", authMiddleware, CategoryController.update);
 router.delete("/categories/:id", authMiddleware, CategoryController.delete);
+
+// Dashboard
+router.get("/dashboard/summary", authMiddleware, DashboardController.getSummary);
+
+// Tracking (Public)
+router.post("/tracking/visit", TrackingController.trackVisit);
+router.post("/tracking/products/:id", TrackingController.trackProduct);
+router.post("/tracking/news/:id", TrackingController.trackNews);
 
 export default router;

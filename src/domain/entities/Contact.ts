@@ -22,4 +22,7 @@ export class Contact {
 
     @CreateDateColumn()
     createdAt!: Date;
+
+    @Column({ default: false })
+    isRead!: boolean;
 }

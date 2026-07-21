@@ -40,4 +40,7 @@ export class Product {
 
     @Column({ default: true })
     isActive!: boolean;
+
+    @Column({ default: 0 })
+    views!: number;
 }
