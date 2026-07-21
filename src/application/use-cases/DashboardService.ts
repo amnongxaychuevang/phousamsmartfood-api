@@ -4,6 +4,7 @@ import { News } from "../../domain/entities/News";
 import { Category } from "../../domain/entities/Category";
 import { Contact } from "../../domain/entities/Contact";
 import { PageVisit } from "../../domain/entities/PageVisit";
+import { TeamMember } from "../../domain/entities/TeamMember";
 import { MoreThanOrEqual } from "typeorm";
 
 export class DashboardService {
@@ -13,6 +14,7 @@ export class DashboardService {
         const categoryRepo = AppDataSource.getRepository(Category);
         const contactRepo = AppDataSource.getRepository(Contact);
         const pageVisitRepo = AppDataSource.getRepository(PageVisit);
+        const teamRepo = AppDataSource.getRepository(TeamMember);
 
         // Run queries in parallel for performance
         const [
@@ -20,6 +22,7 @@ export class DashboardService {
             newsCount,
             categoryCount,
             unreadInquiryCount,
+            teamCount,
             topProducts,
             recentNews,
             recentMessages
@@ -28,6 +31,7 @@ export class DashboardService {
             newsRepo.count(),
             categoryRepo.count(),
             contactRepo.count({ where: { isRead: false } }),
+            teamRepo.count(),
             
             // Top products (now sorting by real views)
             productRepo.find({
@@ -89,6 +93,7 @@ export class DashboardService {
             newsCount,
             categoryCount,
             unreadInquiryCount,
+            teamCount,
             topProducts,
             recentNews,
             recentMessages,
